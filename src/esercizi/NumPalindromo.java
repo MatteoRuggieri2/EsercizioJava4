@@ -10,10 +10,8 @@ public class NumPalindromo {
 		// Prendo la input dell'utente
 		Scanner in = new Scanner(System.in);
 		
-		System.out.println("Inserisci un numero intero positivo: (premi Enter per confermare)");
-		
 		// La salvo in una varibile
-		int num1 = in.nextInt();
+		int num1 = getValidInteger(in, "Inserisci un numero intero positivo: (premi Enter per confermare)");
 		in.close();
 		
 		//	Mostro numero inserito
@@ -21,9 +19,9 @@ public class NumPalindromo {
 		
 		// Passo il numero alla funzione palindromeCheck che tornerà un boolean.
 		if (palindromeCheck(num1)) {
-			System.out.println("Questo numero è palindromo! :)");
+			System.out.println("\nESITO: Questo numero è palindromo! :)");
 		} else {
-			System.out.println("Questo numero NON è palindromo. :(");
+			System.out.println("\nESITO: Questo numero NON è palindromo. :(");
 		}
 		
 
@@ -79,6 +77,33 @@ public class NumPalindromo {
 		} else {
 			return false;
 		}
+	}
+	
+	/* Questo metodo ha il compito di richiedere un input intero positivo.
+	 * Se ciò che viene fornito dall'utente non è di tipo int positivo verrà
+	 * richiesto all'infinito. */
+	public static int getValidInteger(Scanner in, String prompt) {
+		
+		String errorMessage = "\nERROR:\nInput non valido. Per favore, inserisci un numero intero positivo.\n";
+		
+		// Finchè non ottengo un int positvo
+		while (true) {
+		    System.out.println(prompt);
+
+		    if (in.hasNextInt()) {
+		        int inInt = in.nextInt(); // Leggo il numero intero
+		        if (inInt > 0) {
+		            return inInt; // Se positivo, ritorno il valore
+		        } else {
+		            System.out.println(errorMessage);
+		            // Non consumo ulteriori token, dato che inInt è già stato letto
+		        }
+		    } else {
+		        System.out.println(errorMessage);
+		        in.next(); // Consuma il token non valido
+		    }
+		}
+
 	}
 
 }
