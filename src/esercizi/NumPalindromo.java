@@ -29,6 +29,9 @@ public class NumPalindromo {
 	
 	/* Questa funzione, dato un intero, mi restituisce il numero di cifre */
 	public static int digitCalculator(int num1) {
+		
+		if (num1 == 0) { return 1; }
+		
 		int count = 0;
 		while (num1 > 0) {
 			num1 = num1 / 10;
@@ -92,7 +95,7 @@ public class NumPalindromo {
 
 		    if (in.hasNextInt()) {
 		        int inInt = in.nextInt(); // Leggo il numero intero
-		        if (inInt > 0) {
+		        if (inInt >= 0) {
 		            return inInt; // Se positivo, ritorno il valore
 		        } else {
 		            System.out.println(errorMessage);
